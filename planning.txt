@@ -1,0 +1,9 @@
+Users have to login or signup
+Users can see list of hotels and book a hotel
+Users can do reservation and get confirmation ticket
+
+
+Classes:
+User
+Hotel
+ReservationTicket
