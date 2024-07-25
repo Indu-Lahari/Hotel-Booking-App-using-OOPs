@@ -10,6 +10,7 @@ class Hotel:
     # View list of hotels
     def __init__(self, hotel_id):
         self.hotel_id = hotel_id
+        self.name = df.loc[df["id"] == self.hotel_id, "name"].squeeze()
 
     def book(self):
         """Book a hotel by changing its availability to no"""
@@ -27,20 +28,27 @@ class Hotel:
 
 class ReservationTicket:
     def __init__(self, user_name, hotel_name):
-        pass
+        self.user_name = user_name
+        self.hotel = hotel_name
 
     def generate(self):
-        pass
+        content = f"""
+        Thank you for your reservation
+        Here is your booking date:
+        Name: {self.user_name}
+        Hotel Name: {self.hotel.name}
+        """
+        return content
 
 
 print(df)
-hotel_id = input("Enter the id of the hotel:")
-hotel = Hotel(hotel_id)
+hotel_ID = input("Enter the id of the hotel:")
+hotel = Hotel(hotel_ID)
 
 if hotel.available():
     hotel.book()
     name = input("Enter your name:")
-    reservation_ticket = ReservationTicket(name, hotel)
-    reservation_ticket.generate()
+    reservation_ticket = ReservationTicket(user_name=name, hotel_name=hotel)
+    print(reservation_ticket.generate())
 else:
     print("Hotel is not free.")
